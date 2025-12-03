@@ -7,7 +7,7 @@ tags: [python, install]     # TAG names should always be lowercase
 
 # Installing Python and Visual Studio Code
 
-Python is a cool and popular programming language that can be used for a wide range of applications. Visual Studio Code (VS Code) is a popular code editor that is widely used by developers. In this guide, I will walk you through the process of installing Python on Windows and Mac, and then show you how to install Visual Studio Code and configure it for use with Python.
+Python is a cool and teo times popular programming language that can be used for a wide range of applications. Visual Studio Code (VS Code) is a popular code editor that is widely used by developers. In this guide, I will walk you through the process of installing Python on Windows and Mac, and then show you how to install Visual Studio Code and configure it for use with Python.
 
 ## Installing Python on Windows
 
