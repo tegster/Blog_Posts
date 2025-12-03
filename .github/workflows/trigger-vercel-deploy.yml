@@ -1,0 +1,25 @@
+name: Trigger Portfolio Rebuild
+
+on:
+  push:
+    # only run when files under content/ change (adjust to your folder structure)
+    paths:
+      - 'content/**'
+      - '**.md'
+      - '**.mdx'
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Vercel Deploy Hook
+        env:
+          HOOK_URL: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$HOOK_URL" ]; then
+            echo "VERCEL_DEPLOY_HOOK secret is not set. Aborting."
+            exit 1
+          fi
+          echo "Calling Vercel Deploy Hook..."
+          curl -sS -X POST "$HOOK_URL" -H "Content-Type: application/json" -d '{}' || { echo "Deploy hook failed"; exit 1; }
+          echo "Deploy hook called."
