@@ -2,11 +2,14 @@ name: Trigger Portfolio Rebuild
 
 on:
   push:
-    # only run when files under content/ change (adjust to your folder structure)
+    branches:
+      - main
+    # run when content files change; adjust to your repo layout if needed
     paths:
       - 'content/**'
-      - '**.md'
-      - '**.mdx'
+      - '**/*.md'
+      - '**/*.mdx'
+  workflow_dispatch:
 
 jobs:
   trigger:
@@ -21,5 +24,6 @@ jobs:
             exit 1
           fi
           echo "Calling Vercel Deploy Hook..."
+          # POST an empty JSON body to the Vercel deploy hook URL stored in repo secret
           curl -sS -X POST "$HOOK_URL" -H "Content-Type: application/json" -d '{}' || { echo "Deploy hook failed"; exit 1; }
           echo "Deploy hook called."
